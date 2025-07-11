@@ -2,7 +2,7 @@
 Starter template, using PERN stack, keeping backend and frontend in seperate directories. Refer to README for installations and notes. 
 
 (In Progress) Want to make the frontend ready with React and vitest connected to backend and ready to launch.
-JWT's being used for securing routes between frontend and backend(REST API), found tutorial: https://www.youtube.com/watch?v=7nafaH9SddU 
+JWT's being used for securing routes between frontend and backend(REST API), found tutorial: https://www.youtube.com/watch?v=7nafaH9SddU  CORS still needs to be implemented !
 
 Design: Keep CSS inline or modular
 

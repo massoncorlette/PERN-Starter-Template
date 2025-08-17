@@ -27,6 +27,9 @@ npm init - sets up default package.json file (must run!)
 npm install - sets up all node modules (must run!)
 
 (install React, Routers, etc in Frontend directory)
+If using React to setup up default frontend directory run: 
+npm create vite@latest . -- --template react
+
 
 This template uses Prisma ORM supporting PostgreSQL. 
 Prisma Setup Guide: https://www.prisma.io/docs/getting-started/setup-prisma/start-from-scratch/relational-databases-node-postgresql 

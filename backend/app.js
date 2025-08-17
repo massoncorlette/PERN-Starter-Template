@@ -24,22 +24,6 @@ app.post('/api/posts', verifyToken, (req, res) => {
 
 });
 
-app.post('/api/login', (req, res) => {
-  //Mock User
-  const user = {
-    id: 1,
-    username: 'brad',
-    email: 'brad@gmail.com'
-  }
-
-
-  jwt.sign({user:user}, 'secretkey', { expiresIn: '2 days' }, (err,token) => {
-    res.json({
-      token:token
-    });
-  });
-});
-
 // STARTER ROUTES
 
 const jwt = require('jsonwebtoken');

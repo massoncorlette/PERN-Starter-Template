@@ -26,6 +26,8 @@ FRONTEND directory:
 npm init - sets up default package.json file (must run!)
 npm install - sets up all node modules (must run!)
 
+npm run dev - starts vite server
+
 (install React, Routers, etc in Frontend directory)
 If using React to setup up default frontend directory run: 
 npm create vite@latest . -- --template react

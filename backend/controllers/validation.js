@@ -20,7 +20,7 @@ function validatePasswordInput() {
 
 function validateCreateUser() {
   return [
-    body("fname")
+    body("firstname")
       .trim()
       .notEmpty().withMessage("First name is required")
       .isAlpha("en-US", { ignore: " " })
@@ -30,7 +30,7 @@ function validateCreateUser() {
       .isLength({ min: 0, max: 24 })
       .withMessage(`User first name ${lengthErr}`)
       .bail(),
-    body("lname")
+    body("lastname")
       .trim()
       .notEmpty().withMessage("Last name is required")
       .bail()
@@ -40,7 +40,7 @@ function validateCreateUser() {
       .isLength({ min: 0, max: 24 })
       .withMessage(`User last name ${lengthErr}`)
       .bail(),
-    body("email")
+    body("username")
       .trim()
       .notEmpty().withMessage("Email is required")
       .bail()
@@ -64,7 +64,6 @@ function validateCreateUser() {
 };
 
 function validateUser() {
-  
   return [
     
     body("username")
@@ -73,22 +72,8 @@ function validateUser() {
   ]
 };
 
-function validateCreateFolder() {
-
-  return [
-
-    body("foldername")
-      .trim()
-      .notEmpty().withMessage("Can't be empty")
-      .bail()
-      .isLength({ min: 0, max: 24 })
-      .withMessage(`Folder name ${lengthErr}`)
-  ]
-}
-
 
 module.exports = {
    validateCreateUser,
    validateUser,
-   validateCreateFolder
 }

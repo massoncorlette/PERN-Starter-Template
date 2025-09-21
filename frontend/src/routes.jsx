@@ -1,7 +1,10 @@
 import App from "./App"; 
 import Home from "./pages/Home"; 
 import ErrorPage from "./components/ErrorPage";
-import DefaultHomePage from "./pages/DefaultHomePage";
+import Login from "./pages/Login";
+import Signup from "./pages/Signup";
+import HomePage from "./pages/HomePage";
+import PostDetails from "./components/PostDetails";
 
 const routes = [
   {
@@ -11,15 +14,27 @@ const routes = [
     children: [
       {
         index: true, // default render
-        element:<DefaultHomePage/>,         
+        element:<Login/>,         
       },
       {
-        path: ":name",
+        path: "sign-up",
+        element: <Signup />,
+      },
+      {
+        path: "home",
         element: <Home />,
+        children: [
+          {
+            index: true,
+            element: <HomePage/> 
+          },
+        //  {
+         //   path: "post/:postId",
+        //    element: <PostDetails/>
+        //  }
+        ]
       },
     ]
   },
 
 ];
-
-export default routes;

@@ -1,15 +1,14 @@
 # PERN-Starter-Template
-Starter template, using PERN stack, keeping backend and frontend in seperate directories. Refer to README for installations and notes. 
+Starter template, using PERN stack, keeping backend and frontend in seperate directories. 
 
-(In Progress) Want to make the frontend ready with React and vitest connected to backend and ready to launch.
-JWT's being used for securing routes between frontend and backend(REST API), found tutorial: https://www.youtube.com/watch?v=7nafaH9SddU  CORS still needs to be implemented !
-
-Design: Keep CSS inline or modular
+BACKEND directory:
 
 Commands:
 Commands in BACKEND directory!
 npm init - sets up default package.json file (must run!)
 npm install - sets up all node modules (must run!)
+
+npm install supertest --save-dev (for testing) (scripts in package.json)
 
 npm install express express-session jsonwebtoken pg passport passport-jwt passport-local bcryptjs ejs express-validator dotenv connect-pg-simple -- install all in one go
 
@@ -22,7 +21,18 @@ npm install pg -- for postgreSQL
 npm install connect-pg-simple -- session storage (connecting db to session storage, so we can store session on postgre db opposed to local machine)
 npm install jsonwebtoken -- for using token based authorization
 
+PRISMA:
+npm install prisma --save-dev
+npm install @prisma/client
+npx prisma init  (makes prisma folder)
+
+npx prisma generate (after making schema)
+npx prisma migrate dev (after making changes to schema)
+ ----------------------------------------------------------------------
 FRONTEND directory:
+
+Design: Keep CSS inline or modular
+
 npm init - sets up default package.json file (must run!)
 npm install - sets up all node modules (must run!)
 

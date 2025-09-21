@@ -1,27 +1,83 @@
 {/* import { useState, useEffect } from 'react' */}
-import { useParams } from "react-router-dom";
-import DefaultHomePage from "./DefaultHomePage";
-import PageOne from "./PageOne";
-import PageTwo from "./PageTwo";
-import '../styles/App.css'
+import { useParams, Outlet } from "react-router-dom";
+import { useEffect, useState } from 'react';
+import Navbar from "../components/Navbar";
+import Footer from "../components/Footer";
 
 function Home() {
-  const { name } = useParams();
+
+  const [user, SetUser] = useState(null);
+  const [data, SetData] = useState(null);
+  // loading state settings
+  const [fetched, SetNewFetch] = useState(false);
+  const [loading, SetLoading] = useState(true);
+  const [success, SetSuccess] = useState(false);
+  const [error, setError] = useState(null);
+  const token = localStorage.getItem('usertoken');
+  console.log(token, "tested");
+
+  //spinner upon mount with delay, post creation message with delay
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      SetLoading(false);
+    }, 2000);
+
+    const successTimer = setTimeout(() => {
+      SetSuccess(false);
+    }, 5000);
+    return () => clearTimeout(timer, successTimer); 
+  } ,[loading, SetSuccess, SetLoading]);
+
+  useEffect(() => {
+    const fetchUser = async () => {
+      try {
+        const response = await fetch('http://localhost:5000/home', {
+          method: 'GET',
+          headers: {
+            'Authorization': `Bearer ${token}`,
+            'Content-Type': 'application/json', 
+          },
+        });
+        if (!response.ok) {
+          throw new Error(`HTTP error! status: ${response.status}`);
+        }
+        const result = await response.json();
+        
+        SetUser(result.user); // (only non sensitive user data from backend)
+        // SetData(result.posts);
+        // reset boolean fetch after updated posts fetch
+        SetNewFetch(false);
+      } catch (error) {
+        setError(error);
+      } 
+    };
+    fetchUser();
+  }, [token, fetched]);  // token dependency?
+
+  if (error) {
+    return <div>Error: {error.message}</div>;
+  }
+  
+  if (loading  || !user) {
+    return (
+      <>
+      <Navbar/>
+        <div style={{ display: "flex", justifyContent: "center", marginTop: "2rem" }}>
+          <div className="spinner"></div>
+        </div>
+      <Footer/>
+      </>
+    );
+  }
 
   return (
-    <div>
-    <h1>Hello from home page!</h1>
-    <p>So, how are you?</p>
-    <hr />
-    <h2>The page visited is here:</h2>
-    {name === "pageone" ? (
-      <PageOne />
-    ) : name === "pagetwo" ? (
-      <PageTwo />
-    ) : (
-      <DefaultHomePage />
-    )}
-  </div>
+    <>
+    <Navbar/>
+      <Outlet context={{user, data, loading, success, SetLoading, SetSuccess, SetNewFetch, }} />
+    <Footer/>
+    </>
+
+
   )
 }
 

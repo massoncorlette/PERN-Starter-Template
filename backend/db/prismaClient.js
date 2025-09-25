@@ -1,7 +1,8 @@
 // initiates Prisma client
 // conditional for testing or production database usage from scripts in package.json
 
-import { PrismaClient } from '@prisma/client';
+const { PrismaClient } = require("@prisma/client");
+
 
 const databaseUrl = process.env.NODE_ENV === 'test'
   ? process.env.TEST_DATABASE_URL
@@ -15,4 +16,4 @@ const prisma = new PrismaClient({
   },
 });
 
-export default prisma;
+module.exports = {prisma};

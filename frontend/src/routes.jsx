@@ -4,7 +4,6 @@ import ErrorPage from "./components/ErrorPage";
 import Login from "./pages/Login";
 import Signup from "./pages/Signup";
 import HomePage from "./pages/HomePage";
-import PostDetails from "./components/PostDetails";
 
 const routes = [
   {
@@ -38,3 +37,5 @@ const routes = [
   },
 
 ];
+
+export default routes;

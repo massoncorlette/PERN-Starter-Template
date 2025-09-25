@@ -1,2 +1,2 @@
 // update controller 
-import prisma from '../../db/prismaClient.js';
+const prisma = require("../db/prismaClient.js");

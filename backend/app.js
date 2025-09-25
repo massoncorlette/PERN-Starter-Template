@@ -12,7 +12,6 @@ const cors = require('cors');
 const {indexRouter} = require('./routes/index');
 const {signupRouter} = require('./routes/signup');
 const {homeRouter} = require('./routes/home');
-const {postsRouter} = require('./routes/posts');
 
 const app = express();
 
@@ -61,6 +60,5 @@ app.post("/log-out", (req, res, next) => {
   });
 });
 
-app.use('/home/posts', postsRouter);
 
 app.listen(5000, () => console.log('Server started on port 5000'));

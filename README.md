@@ -5,26 +5,17 @@ BACKEND directory:
 
 Commands:
 Commands in BACKEND directory!
-npm init - sets up default package.json file (must run!)
-npm install - sets up all node modules (must run!)
+npm install (installs all dependencies found in package.json)
 
 npm install supertest --save-dev (for testing) (scripts in package.json)
 
-npm install express express-session jsonwebtoken pg passport passport-jwt passport-local bcryptjs ejs express-validator dotenv connect-pg-simple -- install all in one go
-
-npm install express  -- setup express server
-npm install ejs -- setup ejs templating language
-npm install express-validator -- for sanitation and validation    
-npm install dotenv -- for storing secure user data in env file   (put require('dotenv').config() in root file to enable access in .env file); 
-npm install bcryptjs -- for serializing passwords
-npm install pg -- for postgreSQL
-npm install connect-pg-simple -- session storage (connecting db to session storage, so we can store session on postgre db opposed to local machine)
-npm install jsonwebtoken -- for using token based authorization
 
 PRISMA:
 npm install prisma --save-dev
 npm install @prisma/client
 npx prisma init  (makes prisma folder)
+npm install @quixo3/prisma-session-store  https://github.com/kleydon/prisma-session-store#readme   (set up Session Model in Prisma) 
+
 
 npx prisma generate (after making schema)
 npx prisma migrate dev (after making changes to schema)
@@ -33,12 +24,10 @@ FRONTEND directory:
 
 Design: Keep CSS inline or modular
 
-npm init - sets up default package.json file (must run!)
-npm install - sets up all node modules (must run!)
+npm install - sets up all node modules (installs all dependencies)
 
 npm run dev - starts vite server
 
-(install React, Routers, etc in Frontend directory)
 If using React to setup up default frontend directory run: 
 npm create vite@latest . -- --template react
 

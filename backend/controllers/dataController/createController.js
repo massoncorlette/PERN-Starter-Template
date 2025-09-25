@@ -1,5 +1,5 @@
 // create controller 
-import prisma from '../../db/prismaClient.js';
+const prisma = require("../../db/prismaClient.js");
 const { validationResult } = require("express-validator");
 
 const bcrypt = require("bcryptjs");

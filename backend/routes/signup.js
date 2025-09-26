@@ -4,7 +4,7 @@ const { validateCreateUser } = require("../controllers/validation");
 
 const signupRouter = Router();
 
-signupRouter.post("/", validateCreateUser(),  handleCreateUser);
+signupRouter.post("/", validateCreateUser(), handleCreateUser);
 
 
 

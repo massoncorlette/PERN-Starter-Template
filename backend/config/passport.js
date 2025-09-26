@@ -3,7 +3,7 @@ const bcrypt = require("bcryptjs");
 const LocalStrategy = require("passport-local").Strategy;
 const pool = require("./pool");
 
-const { prisma } = require('../controllers/viewController');
+const { prisma } = require('../db/prismaClient.js');
 
 passport.use(new LocalStrategy({
   usernameField: 'username',
@@ -69,7 +69,7 @@ const authenticateUser = (req, res, next) => {
 
   passport.authenticate("local", { session: false }, (err, user, info) => {
     if (err || !user) {
-      return res.status(401).json({ error: "Wrong email or password" });
+      return res.status(401).json({ error: "Wrong email or password!" });
     }
 
     jwt.sign({ id: user.id, username: user.username }, "secretkey", { expiresIn: "2d" }, (err, token) => {

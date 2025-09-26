@@ -19,38 +19,40 @@ function SignUp() {
   const navigate = useNavigate();
 
   //validate and sanitize for user exp frontend, deep validation backend
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    await fetch('http://localhost:5000/sign-up', {
-        mode: 'cors',
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json',
-        },
-        body: JSON.stringify({
-          firstname: user.fname,
-          lastname: user.lname,
-          alias: user.alias,
-          username: user.email,
-          password: user.password,
-          passwordconfirm: user.passwordconfirm
-        }),
-    })
-    .then(async (response) => {
+const handleSubmit = async (event) => {
+  event.preventDefault();
+  try {
+    const response = await fetch("http://localhost:5000/sign-up", {
+      mode: "cors",
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        firstname: user.fname,
+        lastname: user.lname,
+        alias: user.alias,
+        username: user.email,
+        password: user.password,
+        passwordconfirm: user.passwordconfirm,
+      }),
+    });
 
-      const data = await response.json();
-      console.log(data);
+    const data = await response.json();
+    console.log(data);
 
-      if (!response.ok) {
-        console.log(data.errors); 
-        setError(data.errors);
-        return;
-      }
-      if (response.status !== 400) {
-        navigate("/"); 
-      }
-    })
-  };
+    if (!response.ok) {
+      setError(data.errors || ["Something went wrong"]);
+      return;
+    }
+
+    if (response.ok || response.status === 201) {
+      navigate("/")
+    }
+  } catch (err) {
+    console.error(err);
+    setError(["Network or server error"]);
+  }
+};
+
 
   //handler function for user info
   const updateInfo = (value, propType) => {
@@ -70,6 +72,7 @@ function SignUp() {
         ))}
       </ul>
     ) : null}
+        
         
     <div  className={styles.formContainer}>
       <form 
@@ -156,7 +159,7 @@ function SignUp() {
         </div>
       </form>
     </div>
-   </>
+    </>
   )
 }
 
